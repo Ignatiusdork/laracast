@@ -6,6 +6,8 @@ error_reporting(E_ALL);
 
 <?php
 
-$heading = 'Home';
+require 'functions.php';
 
-require 'views/index.view.php';
+$heading = 'Contact Us!';
+
+require 'views/contact.view.php';

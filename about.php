@@ -5,6 +5,7 @@ error_reporting(E_ALL);
 ?>
 
 <?php
+require 'functions.php';
 
 $heading = 'About Us!';
 
