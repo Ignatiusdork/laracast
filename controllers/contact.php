@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 ?>
 
 <?php
-require 'functions.php';
+
 echo $_SERVER['REQUEST_URI'];
 $heading = 'Contact Us!';
 
