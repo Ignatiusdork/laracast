@@ -8,17 +8,24 @@ error_reporting(E_ALL);
 <?php
 
 require 'functions.php';
+require 'Database.php';
 
-//require 'router.php';
+$config = require('config.php');
 
-//connect to mySQL db
-$dsn = "mysql:host=localhost;dbname=blog;charset=utf8mb4";
-$pdo = new PDO($dsn,'root');
+$db = new Database($config['database']);
 
-$stmt = $pdo->prepare('SELECT * FROM posts');
-$stmt->execute();
-$posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// Check if 'id' is set in the URL
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $query = "SELECT * FROM posts WHERE id = ?";
+    $posts = $db->query($query, [$id])->fetch();
 
-foreach ($posts as $post) {
-    echo "<li>" . $post['title'] . "</li>";
+    // Check if a post was found before attempting to dump it
+    if ($posts) {
+        dd($posts);
+    } else {
+        echo "No post found with the given ID.";
+    }
+} else {
+    echo "ID parameter not provided in the URL.";
 }
