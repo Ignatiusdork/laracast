@@ -15,18 +15,10 @@ $currentUserId = 1;
 // Fetching a note from db and authorizing it //
 
 //search for a single note from the database
-$note = $db->query('SELECT * FROM notes WHERE id = :id', [
-    'id' => $_GET['id']
-])->find();
-
-// if there is no note found then return a 404
-if (! $note) {
-    abort();
-}
+$note = $db->query('SELECT * FROM notes WHERE id = :id', ['id' => $_GET['id']
+])->findOrFail();
 
 // then authorize users to only be able to view the page avaliable to them
-if ($note['user_id'] != $currentUserId ) {
-    abort(Response::FORBIDDEN);
-}
+authorize($note['user_id'] === $currentUserId);
 
 require 'views/note.view.php';

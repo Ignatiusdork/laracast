@@ -23,7 +23,22 @@ class Database {
         return $this;
     }
 
+    public function get() {
+        return $this->stmt->fetchAll();
+    }
+
     public function find() {
         return $this->stmt->fetch();
+    }
+
+    // return $results if it is found else if there is no note found then return a 404
+    public function findOrFail() {
+
+        $result = $this->find();
+
+        if (! $result) {
+            abort();
+        }
+        return $result;
     }
 }
