@@ -4,7 +4,7 @@
 return [
     'database' => [
         'host' => 'localhost',
-        'dbname' => 'blog',
+        'dbname' => 'jotter',
         'charset'=> 'utf8mb4'
     ]
 ];

@@ -4,9 +4,11 @@ $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 
 $routes = [
     '/laracasts/' => 'controllers/index.php',
-    '/laracasts/index.php' => 'controllers/index.php',
-    '/laracasts/about.php' => 'controllers/about.php',
-    '/laracasts/contact.php' => 'controllers/contact.php',
+    '/laracasts/index' => 'controllers/index.php',
+    '/laracasts/about' => 'controllers/about.php',
+    '/laracasts/notes' => 'controllers/notes.php',
+    '/laracasts/note' => 'controllers/note.php',
+    '/laracasts/contact' => 'controllers/contact.php',
 ];
 
 function routeToController($uri, $routes) {
