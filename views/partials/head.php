@@ -9,7 +9,7 @@ error_reporting(E_ALL);
 
 <head>
     <meta charset="UTF-8">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
 
     <title>App-UI</title>
 

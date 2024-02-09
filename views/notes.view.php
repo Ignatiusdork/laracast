@@ -15,16 +15,15 @@ error_reporting(E_ALL);
                     <?php foreach ($notes as $note) : ?>
                     <li>
                         <a href="/laracasts/note?id=<?= $note['id']?>" class="text-blue-500 hover:underline">
-                            <?= $note['body'] ?>
+                            <?= htmlspecialchars($note['body']) ?>
                         </a>
                         
                     </li>
                         <?php endforeach; ?>
                 </ul>
 
-                <p>
-
-                
+                <p class="mt-6">
+                    <a href="/laracasts/notes/create" class="text-blue-500 hover:underline">Create Note</a>
                 </p>
             </div>
         </main>

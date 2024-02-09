@@ -1,15 +1,6 @@
 <?php
 
-$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
-
-$routes = [
-    '/laracasts/' => 'controllers/index.php',
-    '/laracasts/index' => 'controllers/index.php',
-    '/laracasts/about' => 'controllers/about.php',
-    '/laracasts/notes' => 'controllers/notes.php',
-    '/laracasts/note' => 'controllers/note.php',
-    '/laracasts/contact' => 'controllers/contact.php',
-];
+$routes = require('routes.php');
 
 function routeToController($uri, $routes) {
     if (array_key_exists($uri, $routes)) {
@@ -25,5 +16,7 @@ function abort($code = 404) {
     require "views/{$code}.php";
     die();
 }
+
+$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 
 routeToController($uri, $routes);
