@@ -6,6 +6,6 @@ error_reporting(E_ALL);
 
 <?php
 
-$heading = 'Home';
-
-require 'views/index.view.php';
+view('index.view.php', [
+    'heading' => 'Home'
+]);
