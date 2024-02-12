@@ -6,7 +6,6 @@ error_reporting(E_ALL);
 
 <?php require base_path('views/partials/head.php') ?>
 <?php require base_path('views/partials/nav.php') ?>
-
 <?php require base_path('views/partials/banner.php') ?>
 
 <main>
@@ -15,11 +14,11 @@ error_reporting(E_ALL);
             <form method="POST">
                 <div class="space-y-12">
                     <div class="border-b border-gray-900/10 pb-12">
-
                             <div class="col-span-full">
                                 <label for="about" class="block text-sm font-medium leading-6 text-gray-900">Body</label>
                                 <div class="mt-2">
-                                    <textarea id="body" name="body" rows="3"  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+
+                                    <textarea id="body" name="body" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
                                         <?= $_POST['body'] ?? '' ?>
                                     </textarea>
 
@@ -31,7 +30,6 @@ error_reporting(E_ALL);
                             </div>
                         </div>
                     </div>
-
                 </div>
 
                 <div class="mt-6 flex items-center justify-center gap-x-6">

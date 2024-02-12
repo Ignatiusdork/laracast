@@ -4,7 +4,6 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 ?>
 
-
 <?php
 
 const BASE_PATH = __DIR__ . '/../';
@@ -16,7 +15,12 @@ spl_autoload_register(function ($class) {
     require base_path("{$class}.php");
 });
 
-require base_path('Core/router.php');
+$router = new \Core\Router();
+
+$routes = require base_path('routes.php');
+$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
+
+$router->route($uri, 'GET');
 
 
 
