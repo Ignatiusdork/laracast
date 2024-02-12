@@ -8,6 +8,6 @@ error_reporting(E_ALL);
 
 //echo $_SERVER['REQUEST_URI'];
 
-$heading = 'About Us!';
-
-require "views/about.view.php";
+view("about.view.php", [
+    'heading' => 'Home',
+]);

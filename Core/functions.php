@@ -6,6 +6,8 @@ error_reporting(E_ALL);
 
 <?php
 
+use Core\Response;
+
 function dd($value) {
     echo "<pre>";
     var_dump($value);
