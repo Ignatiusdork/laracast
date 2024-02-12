@@ -12,3 +12,4 @@
 
 $router->get('/laracasts/index', 'controllers/index.php');
 $router->delete('/laracasts/note', 'controllers/notes/destory.php');
+
