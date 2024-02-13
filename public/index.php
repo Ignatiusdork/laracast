@@ -25,5 +25,3 @@ $method = isset($_POST['_method']) ? $_POST['_method'] : $_SERVER['REQUEST_METHO
 $router->route($uri, $method);
 
 
-
-

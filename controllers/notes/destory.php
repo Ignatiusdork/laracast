@@ -13,17 +13,18 @@ $db = new Database($config['database']);
 
 $currentUserId = 1;
 
-// Fetching a note from db and authorizing it //
-
-//search for a single note from the database
+//search for a single note from the database to delete
 $note = $db->query('SELECT * FROM notes WHERE id = :id', [
-    'id' => $_GET['id']
+    'id' => $_POST['id']
 ])->findOrFail();
 
-// authorize users to only be able to view the page avaliable to them
+// authorize users are only able to delete the notes created by them
 authorize($note['user_id'] === $currentUserId);
 
-view("notes/show.view.php", [
-    'heading' => 'Note',
-    'note' => $note
+// form was sumbmitted, delete the current note
+$db->query('DELETE FROM notes WHERE id = :id', [
+    'id' => $_POST['id']
 ]);
+
+header('Location: /laracasts/notes');
+exit();
