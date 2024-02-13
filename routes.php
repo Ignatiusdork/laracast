@@ -8,5 +8,7 @@ $router->get('/laracasts/contact', 'controllers/contact.php');
 $router->get('/laracasts/notes', 'controllers/notes/index.php');
 $router->get('/laracasts/note', 'controllers/notes/show.php');
 $router->delete('/laracasts/note', 'controllers/notes/destory.php');
+
 $router->get('/laracasts/notes/create', 'controllers/notes/create.php');
+$router->post('/laracasts/notes/create', 'controllers/notes/store.php');
 
