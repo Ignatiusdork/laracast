@@ -24,7 +24,7 @@ class Database {
         $this->stmt = $this->connection->prepare($query);
         $this->stmt->execute($params);
 
-        return $this;
+            return $this;
     }
 
     public function get() {
