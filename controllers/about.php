@@ -6,8 +6,6 @@ error_reporting(E_ALL);
 
 <?php
 
-//echo $_SERVER['REQUEST_URI'];
-
 view("about.view.php", [
     'heading' => 'Home',
 ]);

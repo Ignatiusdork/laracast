@@ -6,6 +6,8 @@ error_reporting(E_ALL);
 
 <?php
 
+$_SESSION['name'] = 'Ofon';
+
 view('index.view.php', [
     'heading' => 'Home'
 ]);
