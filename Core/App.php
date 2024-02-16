@@ -7,6 +7,7 @@ class App {
     public static function setContainer($container) {
         static::$container = $container;
     }
+
     // get the container
     public static function container() {
         return static::$container;
@@ -15,7 +16,7 @@ class App {
     public static function bind($key, $func) {
         static::container()->bind($key, $func);
     }
-
+    
     public static function resolve($key) {
         return static::container()->resolve($key);
     }

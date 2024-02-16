@@ -41,19 +41,19 @@ class Router {
 
     public function only($key) {
         $this->routes[array_key_last($this->routes)]['middleware'] = $key;
-        //dd($this->routes);
+    
         return $this;
     }
 
     public function route($uri, $method) {
         foreach ($this->routes as $route) {
+            
+            // find the corresponding routes
             if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
-                // apply the middleware
-                if ($route['middleware']) {
-                    $middleware = Middleware::MAP[$route['middleware']];
-
-                    (new $middleware)->handle();
-                }
+                
+                // apply the middleware set on the route to the resolve method which will figure out if there
+                //is a corresponding middleware class, if its not there then abort otherwise instantiate it and call the corresponding middleware logic
+                Middleware::resolve($route['middleware']);
 
                 return require base_path($route['controller']);
             }
