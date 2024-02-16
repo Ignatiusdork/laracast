@@ -18,3 +18,5 @@ $router->post('/laracasts/notes/create', 'controllers/notes/store.php');
 $router->get('/laracasts/register', 'controllers/registration/create.php')->only('guest');
 $router->post('/laracasts/register', 'controllers/registration/store.php');
 
+$router->get('/laracasts/login', 'controllers/sessions/create.php')->only('guest');
+
