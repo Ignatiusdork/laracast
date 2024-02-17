@@ -16,7 +16,11 @@ error_reporting(E_ALL);
                                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                                 <a href="index" class= "<?= urlIs('laracasts/') ? 'bg-gray-900 text-white': 'text-gray-300';?> text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Home</a>
                                 <a href="about" class="<?= urlIs('laracasts/about') ? 'bg-gray-900 text-white': 'text-gray-300';?> hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
-                                <a href="notes" class="<?= urlIs('laracasts/notes') ? 'bg-gray-900 text-white': 'text-gray-300';?> hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Notes</a>
+
+                                <?php if ($_SESSION['user'] ?? false) : ?>
+                                    <a href="notes" class="<?= urlIs('laracasts/notes') ? 'bg-gray-900 text-white': 'text-gray-300';?> hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Notes</a>
+                                <?php endif;?>
+
                                 <a href="contact" class="<?= urlIs('laracasts/contact') ? 'bg-gray-900 text-white': 'text-gray-300';?> text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contact</a>
                             </div>
                         </div>
@@ -48,11 +52,11 @@ error_reporting(E_ALL);
                                 </div>
                             </div>
 
-                             <?php if ($_SESSION['user'] ?? false) : ?>               
+                            <?php if ($_SESSION['user'] ?? false) : ?>               
                                 <div class="relative ml-3"> 
-                                    <form method="POST" action="laracasts/">
+                                    <form method="POST" action="/laracasts/session">
                                         <input type="hidden" name="_method" value="DELETE">
-                                        
+
                                         <button class="text-white">Log Out</button>
                                     </form>
                                 </div>
