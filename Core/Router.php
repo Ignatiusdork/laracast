@@ -55,7 +55,7 @@ class Router {
                 //is a corresponding middleware class, if its not there then abort otherwise instantiate it and call the corresponding middleware logic
                 Middleware::resolve($route['middleware']);
 
-                return require base_path($route['controller']);
+                return require base_path('Http/controllers/' . $route['controller']);
             }
         }
         $this->abort();
