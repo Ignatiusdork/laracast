@@ -7,6 +7,7 @@ error_reporting(E_ALL);
 <?php
 
 use Core\Authenticator;
+use Core\Session;
 use Http\Forms\LoginForm;
 
 $email = $_POST['email'];
@@ -30,6 +31,6 @@ if ($form->validate($email, $password)) {
 
 }
 
-$_SESSION['_flash']['errors'] = $form->errors();
+Session::flash('errors', $form->errors());
 
 redirect('/laracasts/login');
