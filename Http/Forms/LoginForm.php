@@ -11,7 +11,7 @@ class LoginForm {
             $this->errors['email'] = 'Please provide a valid email address';
         }
 
-        if (!Validator::string($password, 1, 5)) { 
+        if (!Validator::string($password, 1, 255)) { 
             $this->errors['password'] = "Password must be valid";
         }
 
@@ -21,5 +21,9 @@ class LoginForm {
     //getter method to get errors if there are not empty
     public function errors() {
         return $this->errors;
+    }
+
+    public function error($field, $message) {
+        $this->errors[$field] = $message;
     }
 }

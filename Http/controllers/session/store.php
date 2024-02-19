@@ -1,47 +1,35 @@
+<?php 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+?>
+
 <?php
 
-use Core\Database;
-use Core\Validator;
-use Core\App;
+use Core\Authenticator;
 use Http\Forms\LoginForm;
-
-$db = App::resolve(Database::class);
 
 $email = $_POST['email'];
 $password = $_POST['password'];
 
+// Create a new login form
 $form = new LoginForm();
 
 // Check if the form has been validated if it has not return to form field
-if (!$form->validate($email, $password)) {
-    return view('session/create.view.php', [
-        'errors' => $form->errors()
-    ]);
+if ($form->validate($email, $password)) {
+
+    $auth = new Authenticator();
+
+    // attempt and signin user if login authentification is true and redirect else update errors list and send the users to login form/page
+    if ((new Authenticator)->attempt($email, $password)) {
+
+        redirect('/laracasts/index');
+    } 
+
+    $form->error('email', 'The email and passwords credentials do not match our records.');
+
 }
 
-//match the credentials from the database
-$user = $db->query('SELECT * FROM users WHERE email = :email', [
-    'email' => $email
-])->find();
+$_SESSION['_flash']['errors'] = $form->errors();
 
-// if we found matches then proceed to the next step
-if ($user) {
-    // we have a user, but we don't know if the password provided matches what we have in the db
-    if (password_verify($password, $user['password'])) {
-        login([
-            'email' => $email
-        ]);
-
-        header('location: /laracasts/index');
-        exit();
-    }
-}
-
-// else return  to the form with errors
-return view('session/create.view.php', [
-    'errors' => [
-        'email' => 'No matching account found for that email address and password'
-    ]
-]);
-
-
+redirect('/laracasts/login');
