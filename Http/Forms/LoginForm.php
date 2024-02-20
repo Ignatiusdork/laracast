@@ -8,7 +8,6 @@ use Core\Validator;
 class LoginForm {
     protected $errors = [];
 
-    //public $attributes;
     public function __construct(public array $attributes) {
         if (!Validator::email($attributes['$email'])) {
             $this->errors['email'] = 'Please provide a valid email address';
@@ -23,12 +22,11 @@ class LoginForm {
     
         $instance = new static($attributes);
 
-        if ($instance->failed()) {
-            //throw new ValidationException();
-            ValidationException::throw($instance->errors(), $instance->attributes);
-        }
+        return $instance->failed() ? $instance->throw() : $instance;
+    }
 
-        return $instance;
+    public function throw() {
+        ValidationException::throw($this->errors(), $this->attributes);
     }
 
     public function failed() {
@@ -40,7 +38,10 @@ class LoginForm {
         return $this->errors;
     }
 
+    //add errors to the validation list of errors
     public function error($field, $message) {
         $this->errors[$field] = $message;
+
+        return $this;
     }
 }
