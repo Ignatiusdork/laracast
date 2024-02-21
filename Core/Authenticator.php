@@ -11,7 +11,7 @@ class Authenticator {
         $user = App::resolve(Database::class)->query('SELECT * FROM users WHERE email = :email', [
             'email' => $email
         ])->find();
-
+            
         // if we found matches then proceed to the next step
         if ($user) {
             // we have a user, but we don't know if the password provided matches what we have in the db

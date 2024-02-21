@@ -1,0 +1,26 @@
+{
+    "name": "parrotdev/laracasts",
+    "authors": [
+        {
+            "name": "ignatiusdork",
+            "email": "littignatius@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/collections": "^8.83"
+    },
+    "autoload": {
+        "psr-4": {
+            "Core\\": "Core/",
+            "Http\\": "Http/"
+        }
+    },
+    "require-dev": {
+        "pestphp/pest": "^1.23"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
